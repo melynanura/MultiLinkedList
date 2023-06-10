@@ -10,11 +10,13 @@
 //DokterPasien
 void createDocList(listDokterPasien &L){
     first(L) = nil;
+    last(L) = nil;
 }
 adrDokter newElementDoc(infoDokter data){
     adrDokter D = new elementDokter;
         info(D) = data;
         next(D) = nil;
+        prev(D) = nil;
         createRelasi(child(D));
 
         return D;
@@ -22,13 +24,10 @@ adrDokter newElementDoc(infoDokter data){
 void addToLastD(listDokterPasien &L, adrDokter T){
     if(first(L)==nil){
             first(L) = T;
+            last(L) = T;
         }else{
-            adrDokter Q;
-            Q = first(L);
-            while(next(Q)!=nil){
-                Q = next(Q);
-            }
-            next(Q) = T;
+            prev(T)=last(L);
+            last(L)= T;
         }
 }
 void showDoc(listDokterPasien L){
@@ -57,7 +56,7 @@ void showDoc(listDokterPasien L){
 adrRelasi findElmChild (listRelasi L, adrObat rel){
     adrRelasi pRel;
             pRel = first(L);
-            while (pRel!=nil) {
+            while (next(pRel)!=first(L)) {
                 if(info(pRel)== rel){
                     return pRel;
                     break;
@@ -67,7 +66,7 @@ adrRelasi findElmChild (listRelasi L, adrObat rel){
             return  nil;
 }
 
-adrDokter findElmDoc (listDokterPasien L, double antri){
+adrDokter findElmDoc (listDokterPasien L, int antri){
     adrDokter pDokter;
        pDokter = first(L);
        while (pDokter!=nil) {
@@ -113,7 +112,6 @@ void createRelasi(listRelasi &L){
 };
 
 adrRelasi newElemenRelasi(adrObat data){
-    /*{Membuat element relasi baru yang berisi address turis sesuai parameter}*/
        adrRelasi R = new elementRelasi;
        info(R) = data;
        next(R) = nil;
@@ -122,10 +120,9 @@ adrRelasi newElemenRelasi(adrObat data){
 };
 
 void addToLastR(listRelasi &L, adrRelasi R){
-    /*{IS. Terdefinisi sebuah List Relasi(L)kosong dan pointer R berisi alamat elementRelasi
-           FS. R ditambakan di list sebagai elemen terakhir }*/
         if(first(L)==nil){
             first(L) = R;
+            next(first(L))=first(L);
         }else{
             adrRelasi Q;
             Q = first(L);
@@ -133,13 +130,58 @@ void addToLastR(listRelasi &L, adrRelasi R){
                 Q = next(Q);
             }
             next(Q) = R;
+            next(R) = first(L);
         }
 };
 
 
 //fitur
-int countObat(listDokterPasien L, string namaPasien);
-void ShowAllData(listDokterPasien Ldoc);
+int countObat(listDokterPasien L, int antri){
+    adrDokter Pdoc;
+
+        Pdoc = findElmDoc(L, antri);
+        listRelasi lr = child(Pdoc);
+
+        adrRelasi pRel;
+        int countObat = 0;
+        pRel = first(lr);
+        while(pRel!=nil){
+            countObat++;
+            pRel=next(pRel);
+        }
+        return countObat;
+}
+void ShowAllData(listDokterPasien Ldoc){
+    adrDokter pDoc = first(Ldoc);
+
+        if (pDoc==nil){
+            cout<<"Tidak Ada Data"<<endl;
+        }else{
+            while(pDoc!=nil){
+                cout<<endl;
+                cout<<"---------- Obat Pasien "<<info(pDoc).namaPasien<<" ----------"<<endl;
+                cout<<"Dokter: "<<info(pDoc).namaDokter<<endl;
+                cout<<"Spesialis: "<<info(pDoc).spesialis<<endl;
+                cout<<"Antrian: "<<info(pDoc).noAntrian<<endl;
+                cout<<"Tarif: "<<info(pDoc).tarif<<endl;
+                adrRelasi pObat = first(child(pDoc));
+                if (pObat!=nil){
+                    cout<<"Belum Ada Pengunjung"<<endl<<endl;
+                }
+                int j = 1;
+                while(pTour!=nil){
+                    cout<<endl<<"--- Turis "<<j<<" ---"<<endl;
+                    cout<<"Nama: "<<info(info(pTour)).name<<endl;
+                    cout<<"Kode: "<<info(info(pTour)).kode<<endl;
+                    cout<<"Status: "<<info(info(pTour)).status<<endl;
+                    cout<<"Gender: "<<info(info(pTour)).gender<<endl;
+                    pTour = next(pTour);
+                    j++;
+                }
+                pCity = next(pCity);
+            }
+        }
+}
 void FindMaxData(listDokterPasien Ldoc);
 void FindMinData(listDokterPasien Ldoc);
 void addResep(string &namaDokter,int &namaPasien, string &merkObat, int &kodeObat);

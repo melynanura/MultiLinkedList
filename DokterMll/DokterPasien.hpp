@@ -15,7 +15,9 @@ using namespace std;
 #include "Obat.hpp"
 
 #define first(L) ((L).first)
+#define last(L) ((L).last)
 #define next(P) P->next
+#define prev(P) P->prev
 #define info(P) P->info
 #define child(P) P->child
 #define nil NULL
@@ -37,10 +39,12 @@ struct listRelasi{
 };
 
 struct listDokterPasien{
-     adrDokter first;
+    adrDokter first;
+    adrDokter last;
 };
 
 struct elementDokter{
+    adrDokter prev;
     infoDokter info;
     listRelasi child;
     adrDokter next;
@@ -57,7 +61,7 @@ adrDokter newElementDoc(infoDokter data);
 void addToLastD(listDokterPasien &L, adrDokter T);
 void showDoc(listDokterPasien L);
 adrRelasi findElmChild (listRelasi L, adrObat rel);
-adrDokter findElmDoc (listDokterPasien L, double antri);
+adrDokter findElmDoc (listDokterPasien L, int antri);
 int cekElementFirst(listDokterPasien LD);
 infoDokter addMainDoc(infoDokter &dataDokter);
 
@@ -67,7 +71,7 @@ adrRelasi newElemenRelasi(adrObat data);
 void addToLastR(listRelasi &L, adrRelasi R);
 
 //fitur
-int countObat(listDokterPasien L, string namaPasien);
+int countObat(listDokterPasien L, int antri);
 void ShowAllData(listDokterPasien Ldoc);
 void FindMaxData(listDokterPasien Ldoc);
 void FindMinData(listDokterPasien Ldoc);
