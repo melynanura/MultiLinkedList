@@ -23,6 +23,8 @@ using namespace std;
 struct DokterPasien{
     string namaDokter;
     string spesialis;
+    int noAntrian;
+    double tarif;
     string namaPasien;
 };
 
@@ -55,7 +57,7 @@ adrDokter newElementDoc(infoDokter data);
 void addToLastD(listDokterPasien &L, adrDokter T);
 void showDoc(listDokterPasien L);
 adrRelasi findElmChild (listRelasi L, adrObat rel);
-adrDokter findElmDoc (listDokterPasien L, string namaPasien);
+adrDokter findElmDoc (listDokterPasien L, double antri);
 int cekElementFirst(listDokterPasien LD);
 infoDokter addMainDoc(infoDokter &dataDokter);
 
@@ -63,20 +65,18 @@ infoDokter addMainDoc(infoDokter &dataDokter);
 void createRelasi(listRelasi &L);
 adrRelasi newElemenRelasi(adrObat data);
 void addToLastR(listRelasi &L, adrRelasi R);
-void deleteLastR(listRelasi &L, adrRelasi &R);
-void showRelasi(listRelasi L);
 
 //fitur
 int countObat(listDokterPasien L, string namaPasien);
 void ShowAllData(listDokterPasien Ldoc);
 void FindMaxData(listDokterPasien Ldoc);
 void FindMinData(listDokterPasien Ldoc);
-void addForTrip(string &namaKota,int &kodeKota, string &namaTourist, int &kodeTourist);
-void showTouristInCity(listCity LCity, listTourist LTour, int kode);
-void touristMostTrip(listCity LCity, listTourist LTour);
-void touristLeastTrip(listCity LCity, listTourist LTour);
-void deleteTourist(listCity &Lcity, listTourist &Ltour, int kodeK, int kodeT);
-void deleteCity(listCity &L,string namaKota,int kode);
+void addResep(string &namaDokter,int &namaPasien, string &merkObat, int &kodeObat);
+void showObatPasien(listDokterPasien Ldoc, listObat LObat, int kode);
+void patientWithMostMedicine(listDokterPasien Ldoc, listObat LObat);
+void patientWithLeastMedicine(listDokterPasien Ldoc, listObat LTour);
+void deleteObat(listDokterPasien &Ldoc, listObat &LObat, string namaPasien, int kodeObat);
+void deleteDokerPasien(listDokterPasien &L,string namaPasien);
 
 //menu
 int selectMenu();
