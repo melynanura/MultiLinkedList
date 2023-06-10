@@ -20,7 +20,7 @@ adrObat newElementObat(infoObat data){
 void addToLastO(listObat &L, adrObat T){
     if(first(L)==nil){
             first(L) = T;
-        }else{
+    }else{
             adrObat Q;
             Q = first(L);
             while(next(Q)!=nil){
