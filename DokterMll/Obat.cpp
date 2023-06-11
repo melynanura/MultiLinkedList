@@ -83,11 +83,11 @@ void showInfoObat (listObat L){
         cout<<"Tidak Ada Data"<<endl;
     }else{
         int i = 1;
-        cout<<"--- Info Data Turis ---"<<endl;
+        cout<<"--- Info Data Obat ---"<<endl;
         while(T!=nil){
             data = info(T);
             cout<<endl;
-            cout<<"Data turis ke-"<<i<<endl;
+            cout<<"Data obat ke-"<<i<<endl;
             cout<< "Merk Obat: "<<data.merk<<endl;
             cout<< "Kode Obat: "<<data.kode<<endl;
             i++;

@@ -33,6 +33,7 @@ int main() {
     //data bawaan Dokter Pasien
     dataDokterPasien.namaDokter = "Dr. Rahmat Irianto";
     dataDokterPasien.spesialis = "Kulit dan Kelamin";
+    dataDokterPasien.namaPasien = "Kurniadi";
     dataDokterPasien.noAntrian = 1;
     dataDokterPasien.tarif = 50000;
     adrD = newElementDoc(dataDokterPasien);
@@ -40,6 +41,7 @@ int main() {
 
     dataDokterPasien.namaDokter = "Dr. Riana Putri";
     dataDokterPasien.spesialis = "Kandungan";
+    dataDokterPasien.namaPasien = "Syarifah";
     dataDokterPasien.noAntrian = 2;
     dataDokterPasien.tarif = 100000;
     adrD = newElementDoc(dataDokterPasien);
