@@ -75,12 +75,12 @@ int countObat(listDokterPasien L, int antri);
 void ShowAllData(listDokterPasien Ldoc);
 void FindMaxData(listDokterPasien Ldoc);
 void FindMinData(listDokterPasien Ldoc);
-void addResep(string &namaDokter,int &namaPasien, string &merkObat, int &kodeObat);
-void showObatPasien(listDokterPasien Ldoc, listObat LObat, int antri);
-void patientWithMostMedicine(listDokterPasien Ldoc, listObat LObat);
-void patientWithLeastMedicine(listDokterPasien Ldoc, listObat LObat);
+void addResep(string &namaPasien, int &antri, string &merkObat, int &kodeObat);
+void showObatPasien(listDokterPasien Ldoc, listObat LObat, int kodeObat);
+void bestSellingMedicine(listDokterPasien Ldoc, listObat LObat);
+void leastSellingMedicine(listDokterPasien Ldoc, listObat LObat);
 void deleteObat(listDokterPasien &Ldoc, listObat &LObat, int antri, int kodeObat);
-void deleteDokerPasien(listDokterPasien &L,string namaPasien);
+void deleteDokerPasien(listDokterPasien &L,int antri);
 
 //menu
 int selectMenu();

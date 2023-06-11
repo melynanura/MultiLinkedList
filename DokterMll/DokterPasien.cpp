@@ -26,6 +26,7 @@ void addToLastD(listDokterPasien &L, adrDokter T){
             first(L) = T;
             last(L) = T;
         }else{
+            next(last(L))=T;
             prev(T)=last(L);
             last(L)= T;
         }
@@ -120,7 +121,7 @@ adrRelasi newElemenRelasi(adrObat data){
 };
 
 void addToLastR(listRelasi &L, adrRelasi R){
-        if(first(L)==nil){
+        if(first(L) == nil){
             first(L) = R;
             next(R)=first(L);
         }else{
@@ -229,22 +230,22 @@ void FindMinData(listDokterPasien Ldoc){
         }
             cout<<"Pasien dengan jumlah obat paling sedikit adalah "<<info(vMin).namaPasien<<dupvMin<<endl<<"dengan jumlah obat sebanyak "<<minVal<<" buah"<<endl;
 }
-void addResep(string &namaDokter,int &namaPasien, string &merkObat, int &kodeObat){
-    cout<<"Nama Dokter: ";
-    cin>>namaDokter;
+void addResep(string &namaPasien, int &antri, string &merkObat, int &kodeObat){
     cout<<"Nama Pasien: ";
     cin>>namaPasien;
+    cout<<"No Antri: ";
+    cin>>antri;
     cout<<"Merk Obat: ";
     cin>>merkObat;
     cout<<"Kode Obat: ";
     cin>>kodeObat;
     cout<<endl;
 }
-void showObatPasien(listDokterPasien Ldoc, listObat LObat, int antri){
-    adrObat cekObat = findElmObat(LObat, antri);
+void showObatPasien(listDokterPasien Ldoc, listObat LObat, int kodeObat){
+    adrObat cekObat = findElmObat(LObat, kodeObat);
     adrDokter pDokter = first(Ldoc);
     adrRelasi cekRel = nil;
-    cout<<endl<<"--- Daftar Obat Pasien "<<info(cekObat).merk<<" ---"<<endl;
+    cout<<endl<<"--- Daftar Pembelian Obat "<<info(cekObat).merk<<" ---"<<endl;
     while(pDokter!=nil){
          cekRel = findElmChild(child(pDokter), cekObat);
          if (cekRel!=nil){
@@ -253,10 +254,10 @@ void showObatPasien(listDokterPasien Ldoc, listObat LObat, int antri){
          pDokter = next(pDokter);
      }
 }
-void patientWithMostMedicine(listDokterPasien Ldoc, listObat LObat){
+void bestSellingMedicine(listDokterPasien Ldoc, listObat LObat){
     adrDokter pDokter;
     adrRelasi pRel;
-    adrDokter pKeep = nil;
+    adrObat pKeep = nil;
     adrObat pObat = first(LObat);
     string dupmax = "";
     int maxVal = 0;
@@ -274,18 +275,18 @@ void patientWithMostMedicine(listDokterPasien Ldoc, listObat LObat){
        }
        if(maxVal < num){
            maxVal = num;
-           pKeep = pDokter;
+           pKeep = pObat;
        }else if (maxVal==num){
-           dupmax = dupmax +", "+ info(pDokter).namaPasien;
+           dupmax = dupmax +", "+ info(pObat).merk;
        }
        pObat = next(pObat);
    }
-   cout<<"Pasien yang paling banyak mebeli obat adalah "<<info(pKeep).namaPasien<<"sebanyak "<<maxVal<<endl;
+   cout<<"Obat yang paling sering dibeli adalah "<<info(pKeep).merk<<dupmax<<"sebanyak "<<maxVal<<endl;
 };
-void patientWithLeastMedicine(listDokterPasien Ldoc, listObat LObat){
+void leastSellingMedicine(listDokterPasien Ldoc, listObat LObat){
     adrDokter pDokter;
     adrRelasi pRel;
-    adrDokter pKeep = nil;
+    adrObat pKeep = nil;
     adrObat pObat = first(LObat);
     string dupmin = "";
     int minVal = 0;
@@ -303,13 +304,13 @@ void patientWithLeastMedicine(listDokterPasien Ldoc, listObat LObat){
        }
        if(minVal > num){
            minVal = num;
-           pKeep = pDokter;
+           pKeep = pObat;
        }else if (minVal==num){
-           dupmin = dupmin +", "+ info(pDokter).namaPasien;
+           dupmin = dupmin +", "+ info(pObat).merk;
        }
        pObat = next(pObat);
    }
-   cout<<"Pasien yang paling sedikit mebeli obat adalah "<<info(pKeep).namaPasien<<"sebanyak "<<minVal<<endl;
+   cout<<"Obat yang paling jarang dibeli adalah "<<info(pKeep).merk<<dupmin<<"sebanyak "<<minVal<<endl;
 }
 void deleteObat(listDokterPasien &Ldoc, listObat &LObat, int antri, int kodeObat){
     adrDokter delDoc = findElmDoc(Ldoc, antri);
@@ -351,13 +352,13 @@ int selectMenu(){
         cout << "-------- APLIKASI DATA KOTA WISATA JAWA BARAT --------" << endl<<endl;
         cout << "1.  Menambah data dokter pasien" << endl;
         cout << "2.  Menambah data obat" << endl;
-        cout << "3.  Menambah data perjalan" << endl;
+        cout << "3.  Menambah data resep" << endl;
         cout << "4.  Menghapus data" << endl;
         cout << "5.  Menampilkan data" << endl;
         cout << "6.  Menampilkan data paling banyak" << endl;
         cout << "7.  Menampilkan data paling sedikit" << endl;
-        cout << "8.  Menampilkan jumlah turis yang mengunjungi suatu kota wisata" << endl;
-        cout << "9.  Mencari data turis atau kota" << endl;
+        cout << "8.  Menampilkan jumlah obat yang dibeli pasien" << endl;
+        cout << "9.  Mencari data dokter pasien dan obat" << endl;
         cout << "10. Bantuan" << endl;
         cout << "0.  Exit" << endl<<endl;
         cout <<"Masukan berupa angka 0-10"<<endl;

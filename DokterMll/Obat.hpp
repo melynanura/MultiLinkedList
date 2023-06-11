@@ -43,5 +43,6 @@ void addToLastO(listObat &L, adrObat T);
 void showObat(listObat L);
 adrObat findElmObat (listObat L, int kode);
 infoObat addMainObat(infoObat &dataObat);
+void showInfoObat (listObat L);
 
 #endif /* Obat_hpp */
