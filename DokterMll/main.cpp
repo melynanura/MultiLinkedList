@@ -177,29 +177,14 @@ int main() {
                 break;
             }
             case 6:{
-                cout<<"Cari Data Paling Banyak pada: "<<endl;
-                cout<<"a. Data pasien yang paling banyak membeli obat"<<endl;
-                cout<<"b. Data obat yang paling banyak dibeli pasien "<<endl<<endl;
-                cout<<"Masukan pilihan: ";
-                cin>> tampil;
-                if(tampil == "a" || tampil == "A"){
-                    FindMaxData(LDokterPasien);
-                }else if (tampil == "b" || tampil == "B"){
+                
                     bestSellingMedicine(LDokterPasien, LObat);
-                }
+                
                 break;
             }
             case 7:{
-                cout<<"Cari Data Paling Sedikit pada: "<<endl;
-                cout<<"a. Data pasien yang paling sedikit membeli obat"<<endl;
-                cout<<"b. Data Turis yang paling sedikit mengunjungi kota wisata"<<endl<<endl;
-                cout<<"Masukan pilihan: ";
-                cin>> tampil;
-                if(tampil == "a" || tampil == "A"){
-                    FindMinData(LDokterPasien);
-                }else if (tampil == "b" || tampil == "B"){
+                
                     leastSellingMedicine(LDokterPasien, LObat);
-                }
                 break;
             }
             case 8:{

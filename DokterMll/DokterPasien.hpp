@@ -73,8 +73,6 @@ void addToLastR(listRelasi &L, adrRelasi R);
 //fitur
 int countObat(listDokterPasien L, int antri);
 void ShowAllData(listDokterPasien Ldoc);
-void FindMaxData(listDokterPasien Ldoc);
-void FindMinData(listDokterPasien Ldoc);
 void addResep(string &namaPasien, int &antri, string &merkObat, int &kodeObat);
 void showObatPasien(listDokterPasien Ldoc, listObat LObat, int kodeObat);
 void bestSellingMedicine(listDokterPasien Ldoc, listObat LObat);
