@@ -209,6 +209,7 @@ int main() {
                     cin>>namaPasien;
                     cout<<"Masukan Nomor Antrian: ";
                     cin>>antri;
+                    cout<<endl;
                     adrD = findElmDoc(LDokterPasien, antri);
                 }else if (tampil == "b" || tampil == "B"){
                     cout<<"Masukan Merk Obat: ";
